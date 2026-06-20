@@ -1,0 +1,25 @@
+.container {
+    background-color: var(--bg-card);
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+}
+
+.container:hover {
+    background-color: var(--bg-main);
+}
+
+.title {
+    font-size: 1rem;
+    border: none;
+    outline: none;
+    background: transparent;
+    flex-grow: 1;         
+    width: auto;         
+    color: var(--text-main);
+    min-width: 0;         
+}

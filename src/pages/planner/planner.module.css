@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  gap: 3rem;
+}
+
+.leftcol {
+    flex: 1.25;
+}
+
+.rightcol {
+    flex: 1;
+}

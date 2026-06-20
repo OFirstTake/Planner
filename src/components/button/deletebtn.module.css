@@ -1,0 +1,25 @@
+.deleteBtn {
+    border: none;
+    cursor: pointer;
+    outline: none;
+    
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    
+    background-color: var(--bg-card); 
+    
+    color: var(--btn-red);
+    font-size: 0.9rem;
+    font-weight: bold;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    transition: background-color 0.2s ease, filter 0.2s ease;
+}
+
+.deleteBtn:hover {
+    background-color: var(--btn-hover); 
+}

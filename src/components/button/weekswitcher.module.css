@@ -1,0 +1,65 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    padding: 0 10px;
+    height: 32px; 
+}
+
+.sideBox {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end; 
+}
+
+.switcherGroup {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.navBtn {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-main);
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.navBtn:hover {
+    background-color: var(--btn-hover);
+}
+
+.dateDisplay {
+    font-size: 0.95rem;
+    font-weight: bold;
+    color: var(--text-main);
+    letter-spacing: 0.5px;
+}
+
+.thisWeekBtn {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    white-space: nowrap;
+}
+
+.thisWeekBtn:hover {
+    background-color: var(--btn-hover);
+    color: var(--text-main);
+    border-style: solid;
+}
