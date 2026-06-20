@@ -1,16 +1,20 @@
-# React + Vite
+# Weekly Planner App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## About the Project
+This project was built with the purpose of learning and practicing **React.js**. It focuses heavily on state management, component composition, and handling complex date/time logic in JavaScript.
 
-Currently, two official plugins are available:
+## Overview
+This is a planner application designed to help users manage projects efficiently. It allows you to break down large projects into daily tasks, set strict deadlines, and track your progress intuitively throughout the week.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
+* **Project & Task Management:** Create multiple projects, add tasks, delete, and toggle completion statuses.
+* **Smart Weekly View:** Navigate through weeks. The app automatically filters and displays tasks based on the selected day.
+* **Advanced Task Assignment:**
+  * Assign a single task to multiple days in a week.
+  * Set precise deadlines for each task.
+* **Real-time Occurrence Tracking:** A dynamic badge system that calculates exactly how many times a task will occur between its creation date and deadline.
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Tech Stack
+* **Core:** React.js (Functional Components, Hooks)
+* **Styling:** CSS Modules (Scoped CSS for clean UI)
+* **Build Tool:** Vite
