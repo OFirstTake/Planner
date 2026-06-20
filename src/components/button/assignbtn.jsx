@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './assignbtn.module.css';
+import { usePlannerStore } from '../../store/store.js';
 
 const countDayOccurrences = (startDateStr, endDateStr, targetDayStr) => {
     if (!startDateStr || !endDateStr || !targetDayStr) return 0;
@@ -23,10 +24,11 @@ const countDayOccurrences = (startDateStr, endDateStr, targetDayStr) => {
     return count;
 };
 
-function AssignBtn({ onSave, createdDate = new Date(), days = [], deadline = "" }) {
+function AssignBtn({ projectId, taskId, createdDate, days, deadline}) {
+
+    const updateTask = usePlannerStore(state => state.updateTask);
 
     const [isOpen, setIsOpen] = useState(false);
-
     const [selectedDeadline, setDeadline] = useState(deadline);
     const [selectedDays, setSelectedDays] = useState(days);
 
@@ -42,9 +44,15 @@ function AssignBtn({ onSave, createdDate = new Date(), days = [], deadline = "" 
     
     const handleSave = () => {
         const totalOccurrences = selectedDays.reduce((total, day) => {
-            return total + countDayOccurrences(createdDate, deadline, day);
+            return total + countDayOccurrences(createdDate, selectedDeadline, day);
         }, 0);
-        onSave({ deadline, selectedDays, totalOccurrences });
+        
+        updateTask(projectId, taskId, {
+            days: selectedDays,
+            deadline: selectedDeadline,
+            totalOccurrences: totalOccurrences
+        });
+
         setIsOpen(false);                  
     };
 
@@ -77,7 +85,7 @@ function AssignBtn({ onSave, createdDate = new Date(), days = [], deadline = "" 
                             <input 
                                 type="date" 
                                 className={styles.dateInput}
-                                value={deadline} 
+                                value={selectedDeadline} 
                                 onChange={(e) => setDeadline(e.target.value)} 
                             />
                         </div>

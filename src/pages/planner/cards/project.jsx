@@ -2,17 +2,14 @@ import React, { useState} from 'react'
 import Task from './task.jsx'
 import DeleteBtn from '../../../components/button/deletebtn.jsx'
 import AddBtn from '../../../components/button/addbtn.jsx'
+import { usePlannerStore } from '../../../store/store.js'
 
 import styles from './project.module.css'
 
-function Project({ projectId, title, tasks, onDelete }) {
+function Project({ projectId, title, tasks, onDelete, onUpdateTasks }) {
 
-    const [taskList, setTaskList] = useState(tasks);
-
-    const handleDeleteTask = (taskIdToDelete) => {
-        const updatedTasks = taskList.filter((_, index) => index !== taskIdToDelete);
-        setTaskList(updatedTasks);
-    };
+    const deleteProject = usePlannerStore(state => state.deleteProject);
+    const addTask = usePlannerStore(state => state.addTask);
 
     const handleAddTask = () => {
         const today = new Date();
@@ -24,34 +21,38 @@ function Project({ projectId, title, tasks, onDelete }) {
         const newTask = { 
             id: Date.now(),              
             name: "", 
-            status: false, 
+
             createdDate: formattedToday,
             days: [], 
-            deadline: "", 
-            totalOccurrences: 0 
+            deadline: "",
+
+            status: false, 
+            completedDates: [],
+            totalOccurrences: 0
         };
         
-        setTaskList([...taskList, newTask]);
+        addTask(projectId, newTask);
     };
 
     return (
         <div className={styles.container}>
             <div className={styles.header}>
                 <input className={styles.title} type="text" placeholder="Project name..." defaultValue={title}></input>
-                <DeleteBtn onClick={() => onDelete(projectId)} />
+                <DeleteBtn onClick={() => deleteProject(projectId)} />
             </div>
             <div className={styles.tasklist}>
-                {taskList.map((task, index) => (
+                {tasks.map((task) => (
                     <Task 
-                        key={index} 
-                        taskId={index} 
+                        key={task.id} 
+                        projectId={projectId}
+                        taskId={task.id} 
                         name={task.name} 
                         status={task.status} 
                         days={task.days}
                         deadline={task.deadline}
                         createdDate={task.createdDate}
-                        totalOccurrences={task.totalOccurrences}                        
-                        onDelete={handleDeleteTask} 
+                        totalOccurrences={task.totalOccurrences}     
+                        completedDates={task.completedDates}
                     />
                 ))}
                 <AddBtn label="+ Add Task" onClick={handleAddTask} />

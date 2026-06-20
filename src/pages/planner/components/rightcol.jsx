@@ -1,16 +1,13 @@
 import React, { useState} from 'react'
 import Project from '../cards/project.jsx'
 import AddBtn from '../../../components/button/addbtn.jsx'
-
+import { usePlannerStore } from '../../../store/store.js'
 
 import styles from './rightcol.module.css'
 
-function RightCol({ projects, setProjects }) {
+function RightCol({ projects }) {
 
-    const handleDeleteProject = (projectIdToDelete) => {
-        const updatedProjects = projects.filter(project => project.id !== projectIdToDelete);
-        setProjects(updatedProjects);
-    };
+    const addProject = usePlannerStore(state => state.addProject);
 
     const handleAddProject = () => {
         const newProject = {
@@ -18,7 +15,7 @@ function RightCol({ projects, setProjects }) {
             title: "",
             tasks: []
         };
-        setProjects([...projects, newProject]);
+        addProject(newProject);
     };
 
     return (
@@ -33,7 +30,6 @@ function RightCol({ projects, setProjects }) {
                     projectId={project.id} 
                     title={project.title} 
                     tasks={project.tasks} 
-                    onDelete={handleDeleteProject} 
                 />
             ))}
             

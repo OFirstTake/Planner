@@ -1,13 +1,14 @@
-import React, { useState} from 'react'
+import React from 'react'
 import LeftCol from './components/leftcol'
 import RightCol from './components/rightcol'
-import { db } from '../../components/db.js'
+import { db } from '../../store/db.js'
+import { usePlannerStore } from '../../store/store.js'
 
 import styles from './planner.module.css'
 
 function Planner() {
 
-    const [projects, setProjects] = useState(db);
+    const projects = usePlannerStore(state => state.projects);
 
     return (
         <div className={styles.container}>
@@ -15,7 +16,7 @@ function Planner() {
                 <LeftCol projects={projects}/>
             </div>
             <div className={styles.rightcol}>
-                <RightCol projects={projects} setProjects={setProjects}/>
+                <RightCol projects={projects}/>
             </div>
         </div>
     )
